@@ -95,7 +95,7 @@ function generatePassword() {
   var numbers = confirm("Do you want numbers?");
   var symbols = confirm("Do you want special characters?");
 
-  if (!(lowercase && uppercase && numbers && symbols)) {
+  if (!(lowercase || uppercase || numbers || symbols)) {
     alert ("Please pick at least one character type.");
     lowercase = confirm("Do you want lowercase characters?");
     uppercase = confirm("Do you want uppercase characters?");
@@ -109,6 +109,7 @@ function generatePassword() {
     hasLowerCasedCharacters: lowercase,
     hasUpperCasedCharacters: uppercase,
   };
+
   return passwordOptions;
 }
 
@@ -157,9 +158,6 @@ function generate() {
       finalPasswordValue.push(finalPassword);
       console.log(`finalPassword = ${finalPasswordValue}`);
     }
-
-
-
 
     return finalPasswordValue;
 
