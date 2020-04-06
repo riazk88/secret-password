@@ -87,8 +87,7 @@ var uppercaseArr = [
 function generatePassword() {
   var passwordLength = Number(prompt("How many characters would you like your password to be? (please choose a number between 8 to 128)"));
 
-
-  if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) 
+  if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128)
   passwordLength = Number (prompt("Invalid, please try again."));
 
   var lowercase = confirm("Do you want lowercase characters?");
@@ -108,46 +107,65 @@ function generatePassword() {
     hasSpecialCharacters: symbols,
     hasNumericCharacters: numbers,
     hasLowerCasedCharacters: lowercase,
-    hasUpperCasedCharacters: uppercase, 
+    hasUpperCasedCharacters: uppercase,
   };
   return passwordOptions;
 }
+
 function generate() {
     var passwordOptions=generatePassword();
     var passwordChar=[];
     var lowercaseChar=[];
+
+    // console.log(passwordOptions);
+
     if (passwordOptions.hasLowerCasedCharacters) {
       for (var i=0; i < passwordOptions.length; i++) {
         var lowercaseChar = lowercaseArr[Math.floor(Math.random() * passwordOptions.length)];
-        passwordChar.push(lowercaseChar[i]);
-        console.log(lowercaseChar[i]);
+        passwordChar.push(lowercaseChar);
+        // console.log(`passwordChar = ${passwordChar}`);
       }
     }
     var uppercaseChar=[];
     if (passwordOptions.hasUpperCasedCharacters) {
       for (var i=0; i < passwordOptions.length; i++) {
         var uppercaseChar = uppercaseArr[Math.floor(Math.random() * passwordOptions.length)];
-        passwordChar.push(uppercaseChar[i]);
-        console.log(uppercaseChar[i]);
+        passwordChar.push(uppercaseChar);
+        // console.log(`passwordChar = ${passwordChar}`);
+      }
     }
     var numbersChar=[];
     if (passwordOptions.hasNumericCharacters) {
       for (var i=0; i < passwordOptions.length; i++) {
         var numbersChar = numbersArr[Math.floor(Math.random() * passwordOptions.length)];
-        passwordChar.push(numbersChar[i]);
-        console.log(numbersChar[i]);
+        passwordChar.push(numbersChar);
+        // console.log(`passwordChar = ${passwordChar}`);
+      }
     }
     var symbolsChar=[];
     if (passwordOptions.hasSpecialCharacters) {
       for (var i=0; i < passwordOptions.length; i++) {
         var symbolsChar = symbolsArr[Math.floor(Math.random() * passwordOptions.length)];
-        passwordChar.push(symbolsChar[i]);
-        console.log(symbolsChar[i]);
+        passwordChar.push(symbolsChar);
+        // console.log(`passwordChar = ${passwordChar}`);
+      }
     }
-    var finalChar=passwordChar[Math.floor(Math.random() * passwordOptions.length)];
-      console.log(finalChar);
+
+    var finalPasswordValue = [];
+    for (var i=0; i < passwordOptions.length; i++) {
+      var finalPassword = passwordChar[Math.floor(Math.random() * passwordChar.length)];
+      finalPasswordValue.push(finalPassword);
+      console.log(`finalPassword = ${finalPasswordValue}`);
     }
-  }
+
+
+
+
+    return finalPasswordValue;
+
+
+
+    // var finalChar=passwordChar[Math.floor(Math.random() * passwordOptions.length)];
 
   // function generate () {
   //   userPassword = "";
@@ -183,9 +201,7 @@ function generate() {
 
   //   return password;
   // }
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
-
+}
 
 // Write password to the #password input
 function writePassword() {
@@ -193,10 +209,10 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
+
+// Get references to the #generate element
+var generateBtn = document.querySelector("#generate");
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-}
-}
