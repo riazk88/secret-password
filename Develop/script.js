@@ -159,7 +159,7 @@ function generate() {
       console.log(`finalPassword = ${finalPasswordValue}`);
     }
 
-    return finalPasswordValue;
+    return finalPasswordValue.join('');
 
 
 
